@@ -758,11 +758,16 @@ section{padding:clamp(60px,9vw,120px) 0;position:relative}
 /* Design Your Glow + lightbox bar responsive */
 @media (max-width:980px){
   .dg__layout{grid-template-columns:1fr}
+}
+/* 3-col gallery only on tablets — phones (≤720) stay 2-col via the rule above */
+@media (min-width:721px) and (max-width:980px){
   .gallery__grid{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:720px){
   .dg__hint{font-size:.74rem;white-space:normal;width:80%;text-align:center}
   .lightbox__bar{justify-content:center}
+  /* touch-friendly tap targets (≥44px) */
+  .filter,.dchip{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding-inline:1.2em}
 }
 
 /* 8 nav items are too many to fit between ~720–980px — use the drawer earlier */
