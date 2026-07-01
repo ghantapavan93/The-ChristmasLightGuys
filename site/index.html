@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Christmas Light Guys | Custom Holiday Lighting in Austin, TX</title>
+<meta name="description" content="Custom residential & commercial Christmas lighting for Austin and Central Texas — professionally designed, installed, maintained, removed, and stored. You enjoy the season. We handle the ladders. Free estimates: 512-339-9313." />
+<meta name="theme-color" content="#070b16" />
+<meta property="og:title" content="The Christmas Light Guys | Austin Holiday Lighting" />
+<meta property="og:description" content="Make your home shine this Christmas. Professional holiday lighting, fully done for you — design, install, service, removal & free storage." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/img/hero-warm-tree-home.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ===== Power-on light surge (one-time on load) ===== -->
+<div class="poweron" id="poweron" aria-hidden="true"></div>
+<!-- ===== Lit scroll-progress wire ===== -->
+<div class="scrollglow" id="scrollGlow" aria-hidden="true"></div>
+<!-- ===== Cursor light trail ===== -->
+<canvas class="trail" id="trail" aria-hidden="true"></canvas>
+
+<!-- ===== Page reveal / lights-on loader ===== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__bulbs">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="loader__text">The Christmas Light Guys</p>
+  </div>
+</div>
+
+<!-- ===== Top utility bar ===== -->
+<div class="topbar">
+  <div class="wrap topbar__inner">
+    <span class="topbar__tag">★ Austin &amp; Central Texas · Fully Bonded &amp; Insured</span>
+    <a class="topbar__phone" href="tel:+15123399313">📞 512-339-9313</a>
+  </div>
+</div>
+
+<!-- ===== Navigation ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a href="#top" class="brand" aria-label="The Christmas Light Guys home">
+      <span class="brand__mark" aria-hidden="true">
+        <span class="brand__bulb"></span><span class="brand__bulb"></span><span class="brand__bulb"></span>
+      </span>
+      <span class="brand__name">The Christmas <em>Light Guys</em></span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#work">Our Work</a>
+      <a href="residential.html">Residential</a>
+      <a href="commercial.html">Commercial</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a class="nav__cta" href="#estimate">Free Estimate</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__media" id="heroMedia">
+      <!-- ===========================================================
+           HERO SLIDESHOW  ·  drop-in images, no code needed
+           Folder:  site/assets/img/hero/
+           Save your AI images as:  hero-1.jpg, hero-2.jpg, … hero-7.jpg
+           (exact lowercase names, .jpg, no spaces). Overwrite the
+           placeholders and they appear automatically, in this order.
+           Want fewer/more than 7? Tell me and I'll adjust the slots.
+           =========================================================== -->
+      <div class="hero__slides" id="heroSlides">
+        <img class="hero__slide hero__img is-active" src="assets/img/hero/hero-1.jpg" alt="Austin home with warm-white Christmas lights on the rooflines and wrapped oak trees at dusk" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-2.jpg" alt="" loading="lazy" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-3.jpg" alt="" loading="lazy" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-4.jpg" alt="" loading="lazy" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-5.jpg" alt="" loading="lazy" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-6.jpg" alt="" loading="lazy" />
+        <img class="hero__slide hero__img" src="assets/img/hero/hero-7.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="hero__glow"></div>
+      <div class="bokeh" id="bokeh" aria-hidden="true"></div>
+      <div class="hero__vignette"></div>
+      <canvas class="snow" id="snow" aria-hidden="true"></canvas>
+    </div>
+
+    <div class="garland" id="garland" aria-hidden="true"></div>
+
+    <div class="wrap hero__content" id="heroContent">
+      <p class="hero__eyebrow reveal">Austin, Texas · We Do Lights Right</p>
+      <h1 class="hero__title">
+        <span class="reveal hero__title-1" style="--d:.05s">Make Your Home</span>
+        <span class="reveal xmas-lights" style="--d:.18s">Shine This Christmas</span>
+      </h1>
+      <p class="hero__sub reveal" style="--d:.32s">
+        Custom Christmas lighting for Austin homes &amp; businesses — professionally
+        designed, installed, maintained, removed, and stored.
+      </p>
+      <div class="hero__actions reveal" style="--d:.45s">
+        <a href="#estimate" class="btn btn--primary btn--glow btn--pulse">Get a Free Estimate</a>
+        <a href="#work" class="btn btn--ghost">See Our Work</a>
+      </div>
+      <p class="hero__wink reveal" style="--d:.6s">You enjoy the season. <strong>We handle the ladders.</strong></p>
+    </div>
+
+    <div class="bokeh bokeh--front" id="bokehFront" aria-hidden="true"></div>
+
+    <a href="#trust" class="hero__scroll" aria-label="Scroll down">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <section class="trust" id="trust">
+    <div class="wrap trust__grid">
+      <div class="trust__item reveal"><span class="trust__ico">🏠</span><p>Residential<br>&amp; Commercial</p></div>
+      <div class="trust__item reveal" style="--d:.06s"><span class="trust__ico">🪜</span><p>Professional<br>Installation</p></div>
+      <div class="trust__item reveal" style="--d:.12s"><span class="trust__ico">🔧</span><p>Free Season-Long<br>Service Calls</p></div>
+      <div class="trust__item reveal" style="--d:.18s"><span class="trust__ico">📦</span><p>Removal<br>&amp; Free Storage</p></div>
+      <div class="trust__item reveal" style="--d:.24s"><span class="trust__ico">📍</span><p>Austin Area<br>Experts</p></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE TICKER (marquee) ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Roofline Lighting</span><i>✦</i><span>Tree Wrapping</span><i>✦</i><span>Commercial Displays</span><i>✦</i><span>Free Season Service</span><i>✦</i><span>Removal &amp; Storage</span><i>✦</i><span>Custom Design</span><i>✦</i><span>Walkways &amp; Landscaping</span><i>✦</i><span>Wreaths &amp; Garlands</span><i>✦</i>
+      <span>Roofline Lighting</span><i>✦</i><span>Tree Wrapping</span><i>✦</i><span>Commercial Displays</span><i>✦</i><span>Free Season Service</span><i>✦</i><span>Removal &amp; Storage</span><i>✦</i><span>Custom Design</span><i>✦</i><span>Walkways &amp; Landscaping</span><i>✦</i><span>Wreaths &amp; Garlands</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- ===== LIGHTS-ON SLIDER ===== -->
+  <section class="lightson" id="work">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">See the difference</p>
+      <h2 class="reveal">Slide to Turn On the Lights</h2>
+      <p class="lede reveal">Drag the handle — watch an ordinary Austin evening turn into the best-looking house on the block.</p>
+    </div>
+
+    <div class="wrap">
+      <div class="compare reveal" id="compare">
+        <div class="compare__after">
+          <img src="assets/img/estate-night.jpg" alt="Estate fully lit with warm-white roofline and wrapped trees" />
+          <span class="compare__label compare__label--after">Lights On ✨</span>
+        </div>
+        <div class="compare__before" id="compareBefore">
+          <img src="assets/img/estate-night.jpg" alt="The same estate before the lights come on" />
+          <span class="compare__label compare__label--before">Lights Off</span>
+        </div>
+        <div class="compare__handle" id="compareHandle" role="slider" aria-label="Reveal the lights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+          <span class="compare__grip">◀ ▶</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED TRANSFORMATIONS ===== -->
+  <section class="showcase">
+    <div class="wrap section-head">
+      <p class="kicker reveal">Featured transformations</p>
+      <h2 class="reveal">See What Happens When Austin Lights Up</h2>
+    </div>
+    <div class="wrap showcase__grid">
+      <figure class="showcase__tile showcase__tile--big reveal">
+        <img src="assets/img/oak-ornaments.jpg" alt="Giant live oaks wrapped in lights with red and green ornaments over an Austin street" loading="lazy" />
+        <figcaption><strong>Heritage Oak Wraps</strong><span>Trunk-to-canopy magic that stops traffic</span></figcaption>
+      </figure>
+      <figure class="showcase__tile reveal" style="--d:.08s">
+        <img src="assets/img/victorian-roofline.jpg" alt="Crisp warm-white roofline outlining a two-story Austin home" loading="lazy" />
+        <figcaption><strong>Crisp Rooflines</strong><span>Clean, custom-cut to every peak</span></figcaption>
+      </figure>
+      <figure class="showcase__tile reveal" style="--d:.16s">
+        <img src="assets/img/roofline-star-tree.jpg" alt="Home with roofline lights and a glowing light-up tree with a star topper" loading="lazy" />
+        <figcaption><strong>Signature Touches</strong><span>Stars, trees &amp; wreaths that finish the look</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== CHOOSE YOUR HOLIDAY LOOK ===== -->
+  <section class="styles" id="styles">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Not sure what you want?</p>
+      <h2 class="reveal">How Should Your Home Feel This Christmas?</h2>
+      <p class="lede reveal">Pick the feeling you're after — we'll show you the look and carry your pick straight into your estimate.</p>
+    </div>
+
+    <div class="wrap styles__layout">
+      <div class="styles__stage reveal">
+        <img src="assets/img/hero-warm-tree-home.jpg" alt="Selected holiday lighting style preview" id="styleImg" />
+        <div class="styles__caption" id="styleCaption">
+          <h3>Warm White Classic</h3>
+          <p>Timeless, elegant, and never out of style — soft warm glow on rooflines and trees.</p>
+          <a href="#estimate" class="btn btn--primary btn--sm" data-style-cta>Design This for My Home</a>
+        </div>
+      </div>
+
+      <div class="styles__picker" id="stylePicker" role="tablist" aria-label="Holiday lighting styles">
+        <button class="chip is-active" data-style="warm" data-img="assets/img/hero-warm-tree-home.jpg"
+          data-title="Warm White Classic" data-desc="Timeless, elegant, and never out of style — soft warm glow on rooflines and trees."><span class="chip__t">Warm White Classic</span><small class="chip__sub">Timeless &amp; elegant</small></button>
+        <button class="chip" data-style="multicolor" data-img="assets/img/colorful-bungalow.jpg"
+          data-title="Traditional Multicolor" data-desc="Bright, joyful, family-favorite color — the nostalgic Christmas everyone remembers."><span class="chip__t">Traditional Multicolor</span><small class="chip__sub">Joyful &amp; nostalgic</small></button>
+        <button class="chip" data-style="roofline" data-img="assets/img/victorian-roofline.jpg"
+          data-title="Elegant Roofline" data-desc="Crisp, custom-cut lines that trace every peak and eave with precision."><span class="chip__t">Elegant Roofline</span><small class="chip__sub">Clean &amp; architectural</small></button>
+        <button class="chip" data-style="trees" data-img="assets/img/oak-ornaments.jpg"
+          data-title="Trees &amp; Landscaping" data-desc="Wrapped trunks, glowing canopies, and lit pathways that transform the whole yard."><span class="chip__t">Trees &amp; Landscaping</span><small class="chip__sub">Lush &amp; magical</small></button>
+        <button class="chip" data-style="full" data-img="assets/img/estate-night.jpg"
+          data-title="Full-Property Display" data-desc="The showstopper — roofline, trees, and grounds working together in harmony."><span class="chip__t">Full-Property Display</span><small class="chip__sub">Bold neighborhood showstopper</small></button>
+        <button class="chip" data-style="commercial" data-img="assets/img/commercial-building.jpg"
+          data-title="Commercial Showcase" data-desc="Professional displays that pull in customers and own the block."><span class="chip__t">Commercial Showcase</span><small class="chip__sub">Professional &amp; eye-catching</small></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESIGN YOUR GLOW (interactive) ===== -->
+  <section class="glowdesign" id="design">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Design your glow</p>
+      <h2 class="reveal">Light Up Your Home — Right Here</h2>
+      <p class="lede reveal">Tap the areas you'd love to see glow. We'll build your wish list and carry it straight into your free estimate.</p>
+    </div>
+
+    <div class="wrap dg__layout">
+      <div class="dg__stage reveal">
+        <svg viewBox="0 0 600 420" role="img" aria-label="Illustration of a house; tap the controls to light up areas" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="winGrad" cx="50%" cy="45%" r="65%">
+              <stop offset="0%" stop-color="#fff3cf"/><stop offset="60%" stop-color="#ffcf78"/><stop offset="100%" stop-color="#e7a23c"/>
+            </radialGradient>
+            <linearGradient id="dgSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#101a31"/><stop offset="100%" stop-color="#070b16"/>
+            </linearGradient>
+          </defs>
+
+          <!-- sky + ground -->
+          <rect x="0" y="0" width="600" height="420" fill="url(#dgSky)"/>
+          <rect x="0" y="342" width="600" height="78" class="bse-ground"/>
+
+          <!-- tree -->
+          <rect x="104" y="252" width="12" height="92" class="bse-trunk"/>
+          <circle cx="110" cy="224" r="52" class="bse-canopy"/>
+
+          <!-- house base -->
+          <polygon points="183,216 300,136 417,216" class="bse-roof"/>
+          <rect x="200" y="216" width="200" height="128" class="bse-wall"/>
+          <rect x="360" y="160" width="16" height="58" class="bse-wall"/>
+          <rect x="224" y="250" width="40" height="38" class="bse-win"/>
+          <rect x="336" y="250" width="40" height="38" class="bse-win"/>
+          <rect x="291" y="278" width="34" height="64" class="bse-door"/>
+          <rect x="196" y="330" width="210" height="14" rx="7" class="bse-hedge"/>
+          <polygon points="300,344 318,344 352,418 266,418" class="bse-path"/>
+
+          <!-- LIGHT LAYERS (off by default) -->
+          <g class="glow" id="g-roofline">
+            <polyline points="183,216 300,136 417,216" class="ls"/>
+            <polyline points="201,217 399,217" class="ls"/>
+          </g>
+          <g class="glow" id="g-windows">
+            <rect x="224" y="250" width="40" height="38" class="win-glow"/>
+            <rect x="336" y="250" width="40" height="38" class="win-glow"/>
+            <rect x="291" y="278" width="34" height="64" class="win-glow"/>
+          </g>
+          <g class="glow" id="g-trees">
+            <circle cx="110" cy="224" r="50" class="ls"/>
+            <path d="M110,340 C96,322 124,302 108,284 C96,268 122,250 110,234" class="ls"/>
+          </g>
+          <g class="glow" id="g-hedges">
+            <path d="M200,334 H402" class="ls"/>
+          </g>
+          <g class="glow" id="g-walkways">
+            <line x1="300" y1="346" x2="266" y2="416" class="ls"/>
+            <line x1="318" y1="346" x2="352" y2="416" class="ls"/>
+          </g>
+          <g class="glow" id="g-wreaths">
+            <path d="M212,224 Q300,252 388,224" class="ls"/>
+            <circle cx="308" cy="262" r="9" class="ls ls--wreath"/>
+          </g>
+        </svg>
+        <span class="dg__hint" id="dgHint">Tap an area to switch its lights on ✨</span>
+      </div>
+
+      <div class="dg__panel reveal">
+        <div class="dg__chips" id="dgChips" role="group" aria-label="Lighting areas to design">
+          <button type="button" class="dchip" data-area="roofline" data-q="Roofline" aria-pressed="false">🏠 Roofline</button>
+          <button type="button" class="dchip" data-area="windows" data-q="Windows &amp; Doors" aria-pressed="false">🪟 Windows &amp; Doors</button>
+          <button type="button" class="dchip" data-area="trees" data-q="Trees" aria-pressed="false">🌳 Trees</button>
+          <button type="button" class="dchip" data-area="hedges" data-q="Hedges" aria-pressed="false">🌿 Hedges</button>
+          <button type="button" class="dchip" data-area="walkways" data-q="Walkways" aria-pressed="false">✨ Walkways</button>
+          <button type="button" class="dchip" data-area="wreaths" data-q="Wreaths &amp; Garlands" aria-pressed="false">🎀 Wreaths &amp; Garlands</button>
+          <button type="button" class="dchip dchip--all" data-area="all" aria-pressed="false">🌟 Light It All Up</button>
+        </div>
+        <div class="dg__summary">
+          <span class="dg__summary-label">Your glow plan</span>
+          <p id="dgSummaryText" aria-live="polite">Nothing selected yet — tap an area to begin.</p>
+        </div>
+        <button type="button" class="btn btn--primary btn--glow" id="dgToEstimate" disabled>Add to My Free Estimate →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="process" id="process">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">How it works</p>
+      <h2 class="reveal">Four Steps. Zero Ladders for You.</h2>
+    </div>
+    <div class="wrap process__grid">
+      <div class="step reveal">
+        <span class="step__num">1</span>
+        <h3>Tell Us About Your Property</h3>
+        <p>Residential or commercial, your address, and a few details. Takes two minutes.</p>
+      </div>
+      <div class="step reveal" style="--d:.08s">
+        <span class="step__num">2</span>
+        <h3>Show Us Your Vision</h3>
+        <p>Pick a style and the areas to light up — or send a photo of a look you love.</p>
+      </div>
+      <div class="step reveal" style="--d:.16s">
+        <span class="step__num">3</span>
+        <h3>Get Your Custom Plan</h3>
+        <p>We design around your home and send a clear, no-pressure estimate.</p>
+      </div>
+      <div class="step reveal" style="--d:.24s">
+        <span class="step__num">4</span>
+        <h3>Enjoy the Holidays</h3>
+        <p>We install, service all season, then remove &amp; store everything for free.</p>
+      </div>
+    </div>
+    <p class="process__wink reveal">One less thing on your Christmas list. 🎄</p>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">What we do</p>
+      <h2 class="reveal">Everything That Makes a Home Glow</h2>
+    </div>
+    <div class="wrap services__grid">
+      <a class="svc reveal" href="residential.html">
+        <img class="svc__bg" src="assets/img/residential-multicolor.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">🏡</span>
+          <h3>Residential Lighting →</h3>
+          <p>Custom displays designed around your home, your style, and your holiday vision.</p>
+        </div>
+      </a>
+      <a class="svc reveal" href="commercial.html" style="--d:.06s">
+        <img class="svc__bg" src="assets/img/commercial-building.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">🏢</span>
+          <h3>Commercial Lighting →</h3>
+          <p>Storefronts, offices, restaurants &amp; properties that command attention.</p>
+        </div>
+      </a>
+      <article class="svc reveal" style="--d:.12s">
+        <img class="svc__bg" src="assets/img/victorian-roofline.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">🏠</span>
+          <h3>Roofline &amp; Architectural</h3>
+          <p>Custom-cut C9 lighting tracing rooflines, windows, doors &amp; peaks.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img class="svc__bg" src="assets/img/oak-ornaments.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">🌳</span>
+          <h3>Tree Wrapping &amp; Canopy</h3>
+          <p>Our signature — trunks and branches wrapped to glowing perfection.</p>
+        </div>
+      </article>
+      <article class="svc reveal" style="--d:.06s">
+        <img class="svc__bg" src="assets/img/estate-night.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">✨</span>
+          <h3>Walkways &amp; Landscaping</h3>
+          <p>Hedge lighting and illuminated pathways that guide the eye home.</p>
+        </div>
+      </article>
+      <article class="svc reveal" style="--d:.12s">
+        <img class="svc__bg" src="assets/img/roofline-star-tree.jpg" alt="" loading="lazy">
+        <div class="svc__body">
+          <span class="svc__ico">🎀</span>
+          <h3>Wreaths, Garlands &amp; Décor</h3>
+          <p>Pre-lit wreaths, wire-wrapped garlands, door &amp; window trims, and stars.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">The gallery</p>
+      <h2 class="reveal">Real Austin Homes, Really Lit Up</h2>
+    </div>
+
+    <div class="wrap gallery__filters reveal" id="galleryFilters">
+      <button class="filter is-active" data-filter="all">All</button>
+      <button class="filter" data-filter="roofline">Roofline</button>
+      <button class="filter" data-filter="trees">Trees</button>
+      <button class="filter" data-filter="warm">Warm White</button>
+      <button class="filter" data-filter="color">Multicolor</button>
+      <button class="filter" data-filter="commercial">Commercial</button>
+    </div>
+
+    <div class="wrap gallery__grid" id="galleryGrid">
+      <button class="gitem reveal" data-cat="trees warm" data-src="assets/img/hero-warm-tree-home.jpg" data-style="Warm White Classic" data-cap="Warm-white tree wraps — elegant &amp; timeless"><img src="assets/img/hero-warm-tree-home.jpg" alt="Warm-white tree wraps in front of an Austin home" loading="lazy"><span class="gitem__cap">Warm-white tree wraps — elegant &amp; timeless</span></button>
+      <button class="gitem reveal" data-cat="trees" data-src="assets/img/oak-ornaments.jpg" data-style="Trees &amp; Landscaping" data-cap="Heritage oak wraps with classic ornaments"><img src="assets/img/oak-ornaments.jpg" alt="Oak trees wrapped with lights and colored ornaments" loading="lazy"><span class="gitem__cap">Heritage oak wraps with classic ornaments</span></button>
+      <button class="gitem reveal" data-cat="trees warm" data-src="assets/img/oak-canopy-street.jpg" data-style="Trees &amp; Landscaping" data-cap="Street-side canopy lighting that stops traffic"><img src="assets/img/oak-canopy-street.jpg" alt="Street-side oak canopy lit for the holidays" loading="lazy"><span class="gitem__cap">Street-side canopy lighting that stops traffic</span></button>
+      <button class="gitem reveal" data-cat="roofline warm" data-src="assets/img/victorian-roofline.jpg" data-style="Elegant Roofline" data-cap="Crisp roofline on a two-story home"><img src="assets/img/victorian-roofline.jpg" alt="Two-story home with warm-white roofline lighting" loading="lazy"><span class="gitem__cap">Crisp roofline on a two-story home</span></button>
+      <button class="gitem reveal" data-cat="roofline warm" data-src="assets/img/roofline-star-tree.jpg" data-style="Elegant Roofline" data-cap="Roofline plus a glowing star-tree centerpiece"><img src="assets/img/roofline-star-tree.jpg" alt="Roofline lights with a light-up tree and star" loading="lazy"><span class="gitem__cap">Roofline plus a glowing star-tree centerpiece</span></button>
+      <button class="gitem reveal" data-cat="warm" data-src="assets/img/estate-night.jpg" data-style="Full-Property Display" data-cap="A full-property estate display"><img src="assets/img/estate-night.jpg" alt="Estate with full-property warm-white lighting" loading="lazy"><span class="gitem__cap">A full-property estate display</span></button>
+      <button class="gitem reveal" data-cat="roofline warm" data-src="assets/img/porch-glow.jpg" data-style="Warm White Classic" data-cap="Cozy porch &amp; roofline glow"><img src="assets/img/porch-glow.jpg" alt="Cozy porch glow and roofline lights" loading="lazy"><span class="gitem__cap">Cozy porch &amp; roofline glow</span></button>
+      <button class="gitem reveal" data-cat="roofline warm" data-src="assets/img/stone-cottage.jpg" data-style="Warm White Classic" data-cap="Stone cottage outlined in warm white"><img src="assets/img/stone-cottage.jpg" alt="Stone cottage outlined in warm lights" loading="lazy"><span class="gitem__cap">Stone cottage outlined in warm white</span></button>
+      <button class="gitem reveal" data-cat="color" data-src="assets/img/colorful-bungalow.jpg" data-style="Traditional Multicolor" data-cap="Bold, joyful multicolor roofline"><img src="assets/img/colorful-bungalow.jpg" alt="Bungalow with multicolor roofline lights" loading="lazy"><span class="gitem__cap">Bold, joyful multicolor roofline</span></button>
+      <button class="gitem reveal" data-cat="color" data-src="assets/img/residential-multicolor.jpg" data-style="Traditional Multicolor" data-cap="Festive multicolor on a family home"><img src="assets/img/residential-multicolor.jpg" alt="Residential home with multicolor holiday lighting" loading="lazy"><span class="gitem__cap">Festive multicolor on a family home</span></button>
+      <button class="gitem reveal" data-cat="commercial" data-src="assets/img/commercial-building.jpg" data-style="Full-Property Display" data-cap="A commercial property that owns the block"><img src="assets/img/commercial-building.jpg" alt="Commercial building with holiday roofline lighting" loading="lazy"><span class="gitem__cap">A commercial property that owns the block</span></button>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="wrap about__layout">
+      <div class="about__media reveal">
+        <img src="assets/img/estate-night.jpg" alt="An Austin home fully lit by The Christmas Light Guys at dusk" loading="lazy" />
+        <div class="about__badge"><strong>Bonded &amp; Insured</strong><span>Local Austin team</span></div>
+      </div>
+      <div class="about__body">
+        <p class="kicker reveal">Who we are</p>
+        <h2 class="reveal">The Austin Team Behind the Lights</h2>
+        <p class="reveal">The Christmas Light Guys are a locally owned, fully bonded and insured Austin team who do one thing exceptionally well: take the entire holiday-lighting headache off your plate.</p>
+        <p class="reveal">We design a display around your home, install it with commercial-grade lights, service it all season long, then take everything down and store it for next year. No ladders. No tangled boxes in the attic. No burned-out strands to fix yourself — for homes and businesses across Central Texas.</p>
+        <p class="reveal">We use professional-grade materials — C-9 bulbs, heavy-gauge high-copper wire, energy-efficient LEDs — with every connection taped and sealed for a clean, custom-fit look that's built to last the season.</p>
+        <div class="about__points reveal">
+          <span>🏠 Residential &amp; commercial</span>
+          <span>🎨 Custom design &amp; plan</span>
+          <span>🔧 Free season-long service</span>
+          <span>📦 Takedown &amp; free storage</span>
+          <span>💡 Pro-grade C-9 &amp; LED</span>
+          <span>🚚 Transfers if you move*</span>
+        </div>
+        <p class="about__note reveal">*Your custom light system can transfer with you if you move within 3 years to a similarly sized home.</p>
+        <p class="about__wink reveal">You enjoy the season. <strong>We handle the ladders.</strong></p>
+        <a href="#estimate" class="btn btn--primary btn--glow reveal">Get Your Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="reviews">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Loved by the neighborhood</p>
+      <h2 class="reveal">The Best Compliment? Lighting the Same Homes Again Next Year.</h2>
+      <div class="reviews__stars reveal" aria-label="Five out of five stars">★★★★★</div>
+    </div>
+    <div class="wrap reviews__grid">
+      <blockquote class="review review--featured reveal">
+        <div class="review__stars" aria-label="Five out of five stars">★★★★★</div>
+        <p>“Honestly the easiest money we spend all year. We enjoy the season — they handle the ladders, the lights, the repairs, and the cleanup. Our home has never looked more magical.”</p>
+        <footer>— Homeowner, Central&nbsp;Austin</footer>
+      </blockquote>
+
+      <blockquote class="review reveal">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Tree Wrapping</span></div>
+        <p>“They wrapped our oaks and ran the rooflines so cleanly the whole street slows down to look. Best-looking house on the block.”</p>
+        <footer>— Homeowner, Northwest&nbsp;Austin</footer>
+      </blockquote>
+      <blockquote class="review reveal" style="--d:.06s">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Season Service</span></div>
+        <p>“A strand went out mid-December and they were back the next day to fix it, no charge. That's why we call them every single year.”</p>
+        <footer>— Homeowner, Round&nbsp;Rock</footer>
+      </blockquote>
+      <blockquote class="review reveal" style="--d:.12s">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Removal &amp; Storage</span></div>
+        <p>“No ladders, no tangled boxes in the attic, no stress. We call, the house lights up, and they take it all down and store it.”</p>
+        <footer>— Homeowner, Georgetown</footer>
+      </blockquote>
+      <blockquote class="review reveal">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Commercial</span></div>
+        <p>“Our storefront has never gotten so many compliments. Professional crew, on time, and the display genuinely pulls people in.”</p>
+        <footer>— Business owner, Cedar&nbsp;Park</footer>
+      </blockquote>
+      <blockquote class="review reveal" style="--d:.06s">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Custom Design</span></div>
+        <p>“We got three quotes — they were the most reasonable and the design blew the others away. Worth every penny.”</p>
+        <footer>— Homeowner, Pflugerville</footer>
+      </blockquote>
+      <blockquote class="review reveal" style="--d:.12s">
+        <div class="review__top"><span class="review__stars" aria-label="Five out of five stars">★★★★★</span><span class="review__tag">Repeat Customer</span></div>
+        <p>“Fifth year in a row. They remember our setup, show up in early November, and it's flawless every time.”</p>
+        <footer>— Homeowner, Leander</footer>
+      </blockquote>
+    </div>
+    <p class="reviews__note">Representative of our customers' feedback — final wording &amp; names pending approval before launch.</p>
+  </section>
+
+  <!-- ===== GUIDED ESTIMATE ===== -->
+  <section class="estimate" id="estimate">
+    <div class="estimate__aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Free, no-pressure estimate</p>
+      <h2 class="reveal">Design Your Display in Under 2 Minutes</h2>
+      <p class="lede reveal">Tell us a little about your vision. We'll review your property and reach out with a custom plan.</p>
+    </div>
+
+    <div class="wrap quote reveal">
+      <div class="quote__progress" id="quoteProgress">
+        <span class="is-active" data-dot="0">Property</span>
+        <span data-dot="1">Areas</span>
+        <span data-dot="2">Style</span>
+        <span data-dot="3">Photos</span>
+        <span data-dot="4">Contact</span>
+      </div>
+
+      <form id="quoteForm" novalidate>
+        <!-- Step 1 -->
+        <fieldset class="qstep is-active" data-step="0">
+          <legend>What kind of property is this?</legend>
+          <div class="optcards" data-single>
+            <label class="opt"><input type="radio" name="property" value="Residential" required><span>🏡 Residential</span></label>
+            <label class="opt"><input type="radio" name="property" value="Commercial"><span>🏢 Commercial</span></label>
+          </div>
+          <div class="field">
+            <label for="zip">Address or ZIP code</label>
+            <input type="text" id="zip" name="zip" placeholder="e.g. 78736 or 123 Oak St, Austin" autocomplete="postal-code" required>
+          </div>
+          <div class="field">
+            <label for="size">Approximate property size</label>
+            <select id="size" name="size">
+              <option value="">Select one (optional)</option>
+              <option>Small / single story</option>
+              <option>Medium / two story</option>
+              <option>Large / estate</option>
+              <option>Commercial property</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Do you have outdoor outlets / power available?</label>
+            <div class="optcards optcards--mini" data-single>
+              <label class="opt"><input type="radio" name="outlets" value="Yes"><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="outlets" value="No"><span>No</span></label>
+              <label class="opt"><input type="radio" name="outlets" value="Not sure"><span>Not sure</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="qstep" data-step="1">
+          <legend>What would you like decorated?</legend>
+          <div class="optcards">
+            <label class="opt"><input type="checkbox" name="areas" value="Roofline"><span>🏠 Roofline</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Windows &amp; Doors"><span>🪟 Windows &amp; Doors</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Trees"><span>🌳 Trees</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Hedges"><span>🌿 Hedges</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Walkways"><span>✨ Walkways</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Wreaths &amp; Garlands"><span>🎀 Wreaths &amp; Garlands</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Entire Property"><span>🌟 Entire Property</span></label>
+            <label class="opt"><input type="checkbox" name="areas" value="Not sure yet"><span>🤔 Not sure yet</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="qstep" data-step="2">
+          <legend>What style do you love?</legend>
+          <div class="optcards optcards--style" data-single>
+            <label class="opt"><input type="radio" name="style" value="Warm White Classic"><span>Warm White Classic</span></label>
+            <label class="opt"><input type="radio" name="style" value="Traditional Multicolor"><span>Traditional Multicolor</span></label>
+            <label class="opt"><input type="radio" name="style" value="Elegant Roofline"><span>Elegant Roofline</span></label>
+            <label class="opt"><input type="radio" name="style" value="Trees &amp; Landscaping"><span>Trees &amp; Landscaping</span></label>
+            <label class="opt"><input type="radio" name="style" value="Full-Property Display"><span>Full-Property Display</span></label>
+            <label class="opt"><input type="radio" name="style" value="Surprise me / Custom"><span>Surprise me / Custom</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Step 4 -->
+        <fieldset class="qstep" data-step="3">
+          <legend>Add photos (optional, but it helps a lot)</legend>
+          <p class="qhint">A few quick photos help us design accurately. Snap whatever you can:</p>
+          <ul class="shotlist">
+            <li>📸 Full front of the property</li>
+            <li>↔️ Side view, if it wraps around</li>
+            <li>🌳 Trees or special areas</li>
+            <li>🎀 Spots you want decorated</li>
+            <li>💡 An inspiration photo you love</li>
+          </ul>
+          <label class="upload" id="uploadBox">
+            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+            <span class="upload__inner">
+              <strong>📷 Tap to add photos</strong>
+              <small>From your phone camera or library</small>
+            </span>
+          </label>
+          <div class="upload__previews" id="previews"></div>
+        </fieldset>
+
+        <!-- Step 5 -->
+        <fieldset class="qstep" data-step="4">
+          <legend>Where should we send your custom plan?</legend>
+          <div class="field-row">
+            <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" autocomplete="tel" required></div>
+          </div>
+          <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="timing">Preferred install timing</label>
+              <select id="timing" name="timing">
+                <option value="">Select (optional)</option>
+                <option>As soon as possible</option>
+                <option>Before Thanksgiving</option>
+                <option>Early December</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="besttime">Best time to reach you</label>
+              <select id="besttime" name="besttime">
+                <option value="">Select (optional)</option>
+                <option>Morning</option><option>Afternoon</option><option>Evening</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="notes">Anything else? (optional)</label><textarea id="notes" name="notes" rows="3" placeholder="Tell us about your vision, or a look you saw above…"></textarea></div>
+          <!-- spam honeypot: real people never fill this -->
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        </fieldset>
+
+        <!-- Confirmation -->
+        <div class="qstep qdone" data-step="5">
+          <div class="qdone__mark" id="qdoneMark">✨</div>
+          <h3 id="qdoneTitle">Your holiday transformation starts here.</h3>
+          <p id="qdoneMsg">Thanks! We'll review your property and reach out with a custom plan. Prefer to talk now?</p>
+          <div class="qdone__actions">
+            <a class="btn btn--primary" href="tel:+15123399313">📞 Call 512-339-9313</a>
+            <a class="btn btn--ghost" id="qdoneEmail" href="mailto:guys@thechristmaslightguys.com" hidden>📧 Finish by email</a>
+          </div>
+        </div>
+
+        <div class="qnav" id="qnav">
+          <button type="button" class="btn btn--ghost" id="qback" hidden>← Back</button>
+          <button type="button" class="btn btn--primary btn--glow" id="qnext">Next →</button>
+          <button type="submit" class="btn btn--primary btn--glow" id="qsubmit" hidden>Send My Request ✨</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section class="why">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Why The Christmas Light Guys</p>
+      <h2 class="reveal">All the Magic. None of the Hassle.</h2>
+    </div>
+    <div class="wrap why__grid">
+      <div class="why__item reveal"><span>🎨</span><p>Custom-fit professional design</p></div>
+      <div class="why__item reveal" style="--d:.05s"><span>🛡️</span><p>Safer than DIY ladder climbing</p></div>
+      <div class="why__item reveal" style="--d:.1s"><span>💡</span><p>Energy-efficient LED options</p></div>
+      <div class="why__item reveal" style="--d:.15s"><span>🔧</span><p>Free repairs all season long</p></div>
+      <div class="why__item reveal" style="--d:.2s"><span>📦</span><p>Removal &amp; free off-season storage</p></div>
+      <div class="why__item reveal" style="--d:.25s"><span>🤝</span><p>Local, bonded &amp; insured Austin team</p></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE AREA ===== -->
+  <section class="area" id="area">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Where we work</p>
+      <h2 class="reveal">Lighting Austin &amp; the Communities Around It</h2>
+    </div>
+    <div class="wrap area__tags reveal">
+      <span>Austin</span><span>Round Rock</span><span>Pflugerville</span><span>Georgetown</span>
+      <span>Leander</span><span>Cedar Park</span><span>Bastrop</span><span>Lakeway</span>
+      <span>Buda</span><span>Kyle</span>
+    </div>
+    <p class="area__counties reveal">Proudly serving Travis, Williamson &amp; Hays Counties. Not sure if we reach you? <a href="tel:+15123399313">Just ask.</a></p>
+  </section>
+
+  <!-- ===== ROOFLINE DRAW-ON DIVIDER ===== -->
+  <section class="roofdraw" id="roofdraw">
+    <svg class="roofdraw__svg" id="roofSvg" viewBox="0 0 1200 160" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <defs><clipPath id="rfClip"><rect id="rfClipRect" x="0" y="0" width="1200" height="160"/></clipPath></defs>
+      <path class="rf-house" d="M0,140 L40,140 L40,100 L100,55 L160,100 L160,140 L230,140 L230,95 L300,50 L370,95 L370,140 L450,140 L450,105 L520,62 L590,105 L590,140 L680,140 L680,90 L760,45 L840,90 L840,140 L930,140 L930,100 L1000,58 L1070,100 L1070,140 L1140,140 L1140,108 L1180,80 L1200,100"/>
+      <g clip-path="url(#rfClip)">
+        <path class="rf-lights" d="M0,140 L40,140 L40,100 L100,55 L160,100 L160,140 L230,140 L230,95 L300,50 L370,95 L370,140 L450,140 L450,105 L520,62 L590,105 L590,140 L680,140 L680,90 L760,45 L840,90 L840,140 L930,140 L930,100 L1000,58 L1070,100 L1070,140 L1140,140 L1140,108 L1180,80 L1200,100"/>
+      </g>
+    </svg>
+    <p class="roofdraw__cap reveal">We light up the whole street. ✨</p>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="wrap section-head center">
+      <p class="kicker reveal">Good questions</p>
+      <h2 class="reveal">Everything You're Wondering</h2>
+    </div>
+    <div class="wrap faq__list" id="faqList">
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">Do you provide the lights, or do I?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>We provide everything — commercial-grade lights and all materials, custom-fit to your home. They stay ours: we maintain them all season, take them down, and store them for you until next year.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">What's included in the price?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>One simple, done-for-you package: custom design, professional installation, service calls throughout the season, takedown after the holidays, and free storage until next year.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">What if a light burns out mid-season?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Just call us. We come back out and fix it at no extra charge while your display is up — keeping your home looking its best all season.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">Do I have to take anything down or store boxes in my attic?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Never. We remove everything after the season and store it for you, then rehang it next year whenever you're ready. No ladders, no tangled strands, no clutter.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">Do you decorate commercial properties too?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Yes — homes and businesses alike: storefronts, offices, restaurants, HOAs, and commercial properties of all sizes.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">Can I choose the colors and style?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Absolutely — warm white, classic multicolor, or a fully custom design. Try “Design Your Glow” above to start building your wish list.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">When should I book?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Earlier is better — popular install dates fill up before the holidays. Reach out now to lock in your spot for the season.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">What if a storm damages my display?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>We've got it. If severe weather knocks anything loose, we come back and re-hang it — complimentary, along with our free bulb replacements all season.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">When do the lights come down?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Takedown begins January 2nd and most displays are down by mid-January — then we store everything for you until next year. You don't lift a finger.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">What happens if I move?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Your custom light system can transfer with you if you move within three years to a similarly sized home — so your investment moves right along with you.</p></div>
+      </div>
+      <div class="faq__item reveal">
+        <button class="faq__q" aria-expanded="false">Which areas do you serve?<span class="faq__icon" aria-hidden="true">+</span></button>
+        <div class="faq__a"><p>Austin and the surrounding communities — Round Rock, Pflugerville, Georgetown, Leander, Cedar Park, Bastrop and more, across Travis, Williamson &amp; Hays Counties.</p></div>
+      </div>
+    </div>
+    <p class="faq__more reveal">Still curious? <a href="tel:+15123399313">Call 512-339-9313</a> or <a href="#estimate">request a free estimate</a>.</p>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Do you provide the lights, or do I?","acceptedAnswer":{"@type":"Answer","text":"We provide everything — commercial-grade lights and all materials, custom-fit to your home. They stay ours: we maintain them all season, take them down, and store them for you until next year."}},
+      {"@type":"Question","name":"What's included in the price?","acceptedAnswer":{"@type":"Answer","text":"One simple, done-for-you package: custom design, professional installation, service calls throughout the season, takedown after the holidays, and free storage until next year."}},
+      {"@type":"Question","name":"What if a light burns out mid-season?","acceptedAnswer":{"@type":"Answer","text":"Just call us. We come back out and fix it at no extra charge while your display is up."}},
+      {"@type":"Question","name":"Do I have to take anything down or store boxes?","acceptedAnswer":{"@type":"Answer","text":"Never. We remove everything after the season and store it for you, then rehang it next year whenever you're ready."}},
+      {"@type":"Question","name":"Do you decorate commercial properties too?","acceptedAnswer":{"@type":"Answer","text":"Yes — homes and businesses alike: storefronts, offices, restaurants, HOAs, and commercial properties of all sizes."}},
+      {"@type":"Question","name":"Can I choose the colors and style?","acceptedAnswer":{"@type":"Answer","text":"Absolutely — warm white, classic multicolor, or a fully custom design."}},
+      {"@type":"Question","name":"When should I book?","acceptedAnswer":{"@type":"Answer","text":"Earlier is better — popular install dates fill up before the holidays. Reach out now to lock in your spot."}},
+      {"@type":"Question","name":"What if a storm damages my display?","acceptedAnswer":{"@type":"Answer","text":"If severe weather knocks anything loose, we come back and re-hang it complimentary, along with free bulb replacements all season."}},
+      {"@type":"Question","name":"When do the lights come down?","acceptedAnswer":{"@type":"Answer","text":"Takedown begins January 2nd and most displays are down by mid-January, then we store everything for you until next year."}},
+      {"@type":"Question","name":"What happens if I move?","acceptedAnswer":{"@type":"Answer","text":"Your custom light system can transfer with you if you move within three years to a similarly sized home."}},
+      {"@type":"Question","name":"Which areas do you serve?","acceptedAnswer":{"@type":"Answer","text":"Austin and surrounding communities — Round Rock, Pflugerville, Georgetown, Leander, Cedar Park, Bastrop and more, across Travis, Williamson and Hays Counties."}}
+    ]
+  }
+  </script>
+
+  <!-- ===== PARTICLE LIGHT-WORDS ===== -->
+  <section class="spark" id="spark" aria-label="Lights forming words">
+    <div class="spark__static"><span>We Do Lights Right.</span></div>
+    <canvas id="sparkCanvas" class="spark__canvas" aria-hidden="true"></canvas>
+    <p class="spark__cap" id="sparkCap">Tap &amp; hold to scatter the lights ✨</p>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="finale">
+    <img class="finale__bg" src="assets/img/oak-ornaments.jpg" alt="" aria-hidden="true" loading="lazy" />
+    <div class="garland garland--divider" id="garland2" aria-hidden="true"></div>
+    <div class="finale__glow"></div>
+    <div class="wrap finale__inner">
+      <h2 class="reveal">Ready to Make This Christmas Shine?</h2>
+      <p class="reveal">The lights already make the magic. Let's put them on your home.</p>
+      <div class="finale__actions reveal">
+        <a href="#estimate" class="btn btn--primary btn--glow btn--lg btn--pulse">Request My Free Estimate</a>
+        <a href="tel:+15123399313" class="btn btn--ghost btn--lg">📞 512-339-9313</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <a href="#top" class="brand brand--foot">
+        <span class="brand__mark" aria-hidden="true"><span class="brand__bulb"></span><span class="brand__bulb"></span><span class="brand__bulb"></span></span>
+        <span class="brand__name">The Christmas <em>Light Guys</em></span>
+      </a>
+      <p class="foot__tag">We Do Lights Right. Convenient · Energy Efficient · Better-looking than your neighbors.</p>
+    </div>
+    <div class="foot__col">
+      <h4>Contact</h4>
+      <a href="tel:+15123399313">512-339-9313</a>
+      <a href="mailto:guys@thechristmaslightguys.com">guys@thechristmaslightguys.com</a>
+      <span>PO Box 90305, Austin, TX 78709</span>
+    </div>
+    <div class="foot__col">
+      <h4>Services</h4>
+      <a href="residential.html">Residential Lighting</a>
+      <a href="commercial.html">Commercial Lighting</a>
+      <a href="#services">Tree Wrapping</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+    <div class="foot__col">
+      <h4>Get Started</h4>
+      <a href="#estimate">Free Estimate</a>
+      <a href="#styles">Holiday Looks</a>
+      <a href="#area">Service Area</a>
+    </div>
+  </div>
+  <div class="wrap foot__base">
+    <span>© <span id="year"></span> The Christmas Light Guys · Austin, TX · Fully Bonded &amp; Insured</span>
+    <span>You enjoy the season. We handle the ladders.</span>
+  </div>
+</footer>
+
+<!-- ===== Sticky mobile CTA ===== -->
+<div class="mobcta" id="mobcta">
+  <a href="tel:+15123399313" class="mobcta__call">📞 Call</a>
+  <a href="#estimate" class="mobcta__quote">Get Free Estimate</a>
+</div>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="Previous">‹</button>
+  <div class="lightbox__stage">
+    <img src="" alt="" id="lbImg">
+    <div class="lightbox__bar">
+      <span id="lbCap"></span>
+      <button type="button" class="btn btn--primary btn--sm" id="lbRequest">Request a similar look →</button>
+    </div>
+  </div>
+  <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
