@@ -237,63 +237,50 @@
     }
   }
 
-  /* ---------- Gallery filter ---------- */
-  const filters = $('#galleryFilters');
-  const gitems  = $$('#galleryGrid .gitem');
-  if (filters) {
-    filters.addEventListener('click', (e) => {
-      const b = e.target.closest('.filter'); if (!b) return;
-      $$('.filter', filters).forEach((f) => f.classList.remove('is-active'));
-      b.classList.add('is-active');
-      const f = b.dataset.filter;
-      gitems.forEach((it) => {
-        const show = f === 'all' || it.dataset.cat.includes(f);
-        it.classList.toggle('hide', !show);
+  /* ---------- Gallery grid + lightbox ---------- */
+  const gGrid = $('#galleryGrid');
+  if (gGrid) {
+    const tiles = $$('.gtile', gGrid);
+    const lb = $('#lightbox');
+    if (lb && tiles.length) {
+      const lbImg = $('#lbImg'), lbCap = $('#lbCap'), lbRequest = $('#lbRequest');
+      const decode = (s) => (s || '').replace(/&amp;/g, '&');
+      let idx = 0;
+      const render = () => {
+        const t = tiles[idx], im = t.querySelector('img');
+        lbImg.src = t.dataset.src || (im && im.src) || '';
+        lbImg.alt = im ? im.alt : '';
+        if (lbCap) lbCap.textContent = decode(t.dataset.cap || '');
+      };
+      const open = (i) => {
+        idx = i; render();
+        lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+      const step = (d) => { idx = (idx + d + tiles.length) % tiles.length; render(); };
+      tiles.forEach((t, i) => t.addEventListener('click', () => open(i)));
+      $('#lbClose').addEventListener('click', close);
+      $('#lbPrev').addEventListener('click', () => step(-1));
+      $('#lbNext').addEventListener('click', () => step(1));
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      if (lbRequest) lbRequest.addEventListener('click', () => {
+        const style = decode(tiles[idx] && tiles[idx].dataset.style);
+        if (style) preselectStyle(style);
+        close();
+        const est = $('#estimate');
+        if (est) window.scrollTo({ top: est.getBoundingClientRect().top + window.scrollY - 64, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
-    });
-  }
-
-  /* ---------- Lightbox ---------- */
-  const lb = $('#lightbox');
-  if (lb) {
-    const lbImg = $('#lbImg');
-    const lbCap = $('#lbCap');
-    const lbRequest = $('#lbRequest');
-    const decode = (s) => (s || '').replace(/&amp;/g, '&');
-    let order = [], idx = 0;
-    const render = () => {
-      const it = order[idx];
-      lbImg.src = it.dataset.src;
-      lbImg.alt = it.querySelector('img') ? it.querySelector('img').alt : '';
-      if (lbCap) lbCap.textContent = decode(it.dataset.cap || '');
-    };
-    const open = (it) => {
-      order = gitems.filter((g) => !g.classList.contains('hide'));
-      idx = Math.max(0, order.indexOf(it));
-      render();
-      lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    };
-    const close = () => { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
-    const step = (d) => { idx = (idx + d + order.length) % order.length; render(); };
-    gitems.forEach((it) => it.addEventListener('click', () => open(it)));
-    $('#lbClose').addEventListener('click', close);
-    $('#lbPrev').addEventListener('click', () => step(-1));
-    $('#lbNext').addEventListener('click', () => step(1));
-    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-    if (lbRequest) lbRequest.addEventListener('click', () => {
-      const style = decode(order[idx] && order[idx].dataset.style);
-      if (style) preselectStyle(style);
-      close();
-      const est = $('#estimate');
-      if (est) window.scrollTo({ top: est.getBoundingClientRect().top + window.scrollY - 64, behavior: reduceMotion ? 'auto' : 'smooth' });
-    });
-    document.addEventListener('keydown', (e) => {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') step(-1);
-      if (e.key === 'ArrowRight') step(1);
-    });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
+      });
+    }
   }
 
   /* ---------- Design Your Glow ---------- */
@@ -423,8 +410,8 @@
     //   (Alternatively use Web3Forms/Formspree/Netlify Forms.)
     // Whatever happens, a local backstop is saved and an email fallback is
     // offered, so a lead is NEVER lost silently.
-    const LEAD_ENDPOINT = 'https://formsubmit.co/ajax/guys@thechristmaslightguys.com';
-    const BIZ_EMAIL = 'guys@thechristmaslightguys.com';
+    const LEAD_ENDPOINT = 'https://formsubmit.co/ajax/thelightguysaustin@gmail.com';
+    const BIZ_EMAIL = 'thelightguysaustin@gmail.com';
 
     function celebrate() {
       if (reduceMotion) return;
